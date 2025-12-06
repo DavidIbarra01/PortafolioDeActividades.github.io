@@ -1,0 +1,148 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+#CONTENEDORDETODO{
+
+background-color: rgba(0,0,0,0.5 ); border-radius: 30px; padding: 20px;
+position: absolute;
+    top: 3%;
+    left: 5%; 
+    right: 5%;
+    bottom: 3%; 
+    display: grid; 
+    grid-template-columns: 100px 1fr 280px 150px;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+}
+
+
+
+header{
+    display: flex;
+    grid-column: 1 / span 4;
+    grid-row: 1;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+body{
+    background-color: rgb(53, 108, 53);
+    background-image: url("./Figures/wallpaper.png");
+     font-family: "Press Start 2P";
+     color: white;
+}
+
+#menuDelLadoIzquierdo img{
+width: 50px; 
+    height: 50px;
+    object-fit: contain; 
+    image-rendering: pixelated;
+    cursor: pointer;
+    transition: all 0.2s ease-out; 
+    padding: 5px; 
+}
+
+#contenedorDelBanner img{
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+    border-radius: 10px;
+    padding-left: 0;
+}
+#contenedorDelBanner > div:last-of-type{
+    background-color: rgba(14, 13, 13, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+    height: 180px;
+}
+#menuDelLadoIzquierdo img:hover,
+#menuDelLadoIzquierdo img.activo {
+    background-color: rgba(48, 248, 98, 0.6); 
+    border-radius: 50%; 
+    transform: scale(1.1); 
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); 
+}
+#contenedorDelBanner > div:last-child {
+    background-color: rgba(14, 13, 13, 0.5);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+
+.imagenesconLogos>img{
+   width: 90px;
+}
+
+.logotiposDiv{
+    width: 300px;
+}
+
+
+.juegos{
+    background-color: rgba(14, 13, 13, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+   
+}
+
+#juegosSuperiores {
+    display: flex;
+    flex-direction: column; /* Apila los juegos */
+    gap: 10px; /* Espacio entre cada juego */
+    background-color: rgba(14, 13, 13, 0.5); /* Fondo de panel interno */
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.juegos img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover; /*Recorta en el peor de los casps*/
+    border-radius: 6px;
+    image-rendering: pixelated;
+}
+.juegos p{
+    color: white;
+    font-size: 0.8rem;
+}
+
+@keyframes pulse-shadow{
+    from{ box-shadow:  0 0 20px 5px rgba(0, 255, 0, 0.7);
+    to{ box-shadow: 0 0 40px 15px rgba(0, 255, 0, 1);}}
+}
+
+
+.imagenesconLogos img{
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.imagenesconLogos:hover {
+    background-color: rgba(180, 0, 0, 0.6);
+    border-radius: 50%;
+    transform: scale(1.1); 
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
+}
+
+#downloadBanner{
+    width: 300px;;
+}
+
+#primermenuDerecho, #segundomenuDerecho{
+    background-color: rgba(14, 13, 13, 0.5);
+    border-radius: 20px;
+    padding: 15px;
+    flex-grow: 1;
+}
+
+#carrusel img{
+width: 150px;
+}  
