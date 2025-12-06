@@ -1,0 +1,556 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+
+/*Encabezado*/
+header>img{
+    width: 109px;
+    height: 63px;
+    padding-left: 3rem;
+}
+header{
+    background-color: black;
+    color: white;
+    display: flex;
+    
+}
+
+header>img{
+    padding-right: 30px;
+    margin-top: 40px;
+}
+
+header>h1{
+    margin-top: 40px;
+    padding-right: 300px;
+    font-size: 13px;
+}
+
+/*Cuerpo del sitio*/
+
+body{
+    background-image:   url(/images/background_buildings.png);
+    background-repeat: repeat-x;
+    margin-left: 80px;
+    margin-right: 80px;
+    background-color: #495a94;
+}
+
+h1{
+font-size: 20px;    
+}
+
+/*Contenedor que contiene todo el contenido dentro del rectangulo blanco.*/
+.container_Contenido{
+    background-color: white;
+    display: flex;
+    
+}
+
+/*Pagina de Home (Artistas*/
+.div_GaleriaDeImagenes{
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    gap: 20px;
+    padding-top: 11px;
+    
+}
+
+.div_GaleriaDeImagenes{
+padding-bottom: 30px;
+}
+
+.div_GaleriaDeImagenes>img{
+    border-radius: 10px;
+    transition: .3s ease;
+
+}
+
+.div_GaleriaDeImagenes>img:hover{
+    transform: scale(1.06);
+}
+
+/*== 2. La pagina de artistas ==*/
+
+hr{
+   border-top: 4px dotted rgb(0, 0, 0);
+   background: transparent;
+}
+
+/*2.1 Los artistas*/
+.barot{
+    display: flex;
+    padding-top: 18px;
+}
+.barot>img{
+    width: 90px;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.barotText{
+padding-left: 10px;
+}
+
+
+.Jonathan{
+    display: flex;
+    padding-top: 18px;
+}
+.Jonathan>img{
+    width: 90px;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.JonathanText{
+padding-left: 10px;
+}
+
+
+.Hillary{
+    display: flex;
+    padding-top: 18px;
+}
+.Hillary>img{
+    width: 90px;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.HillaryText{
+padding-left: 10px;
+}
+
+
+.Hassum{
+    display: flex;
+    padding-top: 18px;
+}
+.Hassum>img{
+    width: 90px;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.HassumText{
+padding-left: 10px;
+}
+
+
+.Jennifer{
+    display: flex;
+    padding-top: 18px;
+}
+.Jennifer>img{
+    width: 90px;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.JenniferText{
+padding-left: 10px;
+}
+
+
+.LaVonne{
+    display: flex;
+    padding-top: 18px;
+}
+.LaVonne>img{
+    width: 90px;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.LaVonneText{
+padding-left: 10px;
+}
+
+
+.Constance{
+    display: flex;
+    padding-top: 18px;
+}
+.Constance>img{
+    width: 90px;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.ConstanceText{
+padding-left: 10px;
+}
+
+
+.Riley{
+    display: flex;
+    padding-top: 18px;
+}
+.Riley>img{
+    width: 90px;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.RileyText{
+padding-left: 10px;
+}
+
+
+.Xhou{
+    display: flex;
+    padding-top: 18px;
+}
+.Xhou>img{
+    width: 90px;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.XhouText{
+padding-left: 10px;
+}
+
+
+/*2.2 La galeria del arte*/
+
+.div_GaleriaArtes{
+display: grid;
+    grid-template-columns: repeat(3, 120px);
+    gap: 20px;
+    padding-top: 11px;
+    padding-bottom: 30px;
+}
+
+.div_GaleriaArtes>img{
+    border-radius: 10px;
+    transition: .3s ease;
+    width: 130px;
+
+}
+
+.div_GaleriaArtes>img:hover{
+    transform: scale(1.06);
+}
+
+/*3. == SCHEDULE ==*/
+.fechas{
+    color: rgb(104, 102, 102);
+}
+
+/*artistas*/
+.ElizabethSchedule{
+    display: flex;
+    margin-top: 15px;
+}
+
+.ElizabethSchedule>img{
+   padding-right: 30px;
+   height: 140px;
+  
+   border-radius: 10px;
+   margin-top: 20px;
+}
+
+.ConstanceSchedule{
+    display: flex;
+    margin-top: 15px;
+}
+
+.ConstanceSchedule>img{
+   padding-right: 30px;
+   height: 140px;
+  
+   border-radius: 10px;
+   margin-top: 20px;
+}
+
+
+.ConstanceSchedule{
+    display: flex;
+    margin-top: 15px;
+}
+
+.ConstanceSchedule>img{
+   padding-right: 30px;
+   height: 140px;
+  
+   border-radius: 10px;
+   margin-top: 20px;
+}
+
+
+.RileySchedule{
+    display: flex;
+    margin-top: 15px;
+}
+
+.RileySchedule>img{
+   padding-right: 30px;
+   height: 140px;
+  
+   border-radius: 10px;
+   margin-top: 20px;
+}
+
+
+.JenniferSchedule{
+    display: flex;
+    margin-top: 15px;
+}
+
+.JenniferSchedule>img{
+   padding-right: 30px;
+   height: 140px;
+  
+   border-radius: 10px;
+   margin-top: 20px;
+}
+
+
+.JonathanSchedule{
+    display: flex;
+    margin-top: 15px;
+}
+
+.JonathanSchedule>img{
+   padding-right: 30px;
+   height: 140px;
+  
+   border-radius: 10px;
+   margin-top: 20px;
+}
+
+
+.HillarySchedule{
+    display: flex;
+    margin-top: 15px;
+}
+
+.HillarySchedule>img{
+   padding-right: 30px;
+   height: 140px;
+  
+   border-radius: 10px;
+   margin-top: 20px;
+}
+
+
+/*3. Lado derecho*/
+.div_GaleriaDeImagenes2{
+    display: grid;
+    grid-template-columns: repeat(3, 110px);
+    gap: 7px;
+    padding-top: 11px;
+    
+}
+
+.div_GaleriaDeImagenes2{
+padding-bottom: 30px;
+}
+
+.div_GaleriaDeImagenes2>img{
+    border-radius: 10px;
+    transition: .3s ease;
+    width: 100px;
+}
+
+.div_GaleriaDeImagenes2>img:hover{
+    transform: scale(1.06);
+}
+
+/*4. == THE VENUE ==*/
+
+.TheVenue>img{
+height: 270px;
+}
+
+hr{
+    margin-top: 10px;
+}
+
+/*Textos subrayados con >>:*/
+
+.u_View{
+margin-left: 70%;
+
+}
+
+.rouxMobile{
+    margin-left: 55%;
+  
+}
+
+.thevenuetitulo{
+padding-top: 60px;
+}
+
+.fullSchedule{
+padding-top: 20px;
+    margin-left: 55%;
+}
+
+/*Imagenes: */
+
+.img_Phone{
+width: 240px;
+}
+
+.TheVenue{
+    display: flex;
+   
+}
+
+.TheVenue>img{
+    padding-right: 10px;
+}
+
+
+
+.main{
+padding-right: 15%;
+padding-left: 7%;
+}
+
+.main2{
+padding-right: 25%;
+padding-left: 7%;
+}
+
+.aside{
+   padding-right: 15%;
+}
+
+
+/*Las fechas que se encuentran en los subencabezados*/
+.days{
+color: rgb(43, 42, 42);
+}
+
+.h2_Coming{
+    color: red;
+}
+
+nav a:hover{
+    background-color: rgb(174, 174, 171);
+    color: white;
+}
+
+a{
+    padding-left: 30px;
+    text-decoration: none;
+    
+}
+
+ul>li>a{
+    text-align: center;
+}
+
+nav ul{
+    list-style: none;
+    background-color: rgba(255, 166, 0, 0.818);
+   background-image: linear-gradient(to right,  #FFA600, #e1e0dd);
+   display: flex;
+}
+
+header>p{
+    width: 30%;
+    padding: 1rem 3rem;
+}
+header>div{
+    width: 50%;
+    display: block;
+    padding: 1rem 2rem;
+}
+
+/*4. == EL REGISTER ==*/
+
+.peronalInfo{
+    padding-top: 11px;
+}
+
+.radio1{
+    display: flex;
+}
+
+#msg{
+    padding: 20px;
+
+}
+
+/*CONFIGURACION DEL FORMULARIO*/
+
+.names{
+    display: flex;
+}
+
+.company{
+    display: flex;
+}
+
+.email{
+    display: flex;
+    
+}
+
+.comment{
+    display: flex;
+    
+}
+
+.names>input{
+    margin-left: 104px;
+}
+.company>input{
+    margin-left: 50px;
+}
+.email>input{
+    margin-left: 104px;
+}
+
+.comment>input{
+margin-left: 90px;
+}
+
+
+.request{
+    padding-top: 8px;
+    margin-left: 150px;
+}
+
+
+
+.Labels{
+    display: grid;
+}
+
+.Inputs{
+    display: grid;
+}
+
+/*El pie de pagina*/
+footer{
+     color: white;
+background-color: rgb(73, 72, 72);
+display: flex;
+margin-bottom: 1px;
+}
+
+.Elfooter{
+    display: flex;
+    margin-top: 30px;
+}
+
+.Elfooter>img{
+padding-left: 20px;
+padding-right: 40px;
+}
+
+.footherultimo{
+    padding-left: 4%;
+    margin-right: 20%;
+    margin-top: 30px;
+}
+

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="shortcut icon    " href="./Figures/logoTerraria.webp">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraria Web</title>
+</head>
+<body>
+
+    <div id="CONTENEDORDETODO">
+
+
+        <header>
+        <h1>Wiki de Terraria</h1>
+        <form action="">
+            <img src="./Figures/lupa.webp" alt="" width="50px">
+            <input style="background-color: rgb(33, 32, 32); box-shadow: 0 0 3px 4px black; color: white;" type="text" value="Buscar ">
+        </form>
+       
+        <img src="./Figures/iconoHome.png" alt="" width="50px">
+    </header>
+    
+<main style="grid-column: 1 / span 4;    grid-row: 2; display: grid; grid-template-columns: subgrid; gap: 20px;">
+
+     <div id="menuDelLadoIzquierdo" style=" height: 100%; background-color: rgba(14, 13, 13, 0.5); border-radius: 15px; padding: 18px; grid-column: 1; grid-row: 1; display: flex; align-items: center; flex-direction: column; gap: 20px">
+        <img src="./Figures/Logoarbolito.png" width="50px" alt="" >
+        <img src="./Figures/IconoComunidad.png" width="50px" alt="" >
+        <img src="./Figures/iconoChat.png" width="50px" alt="" >
+        <img src="./Figures/iconoDiscord.png" width="50px" alt="" >
+        <img src="./Figures/iconoHome.png" width="50px" alt="" >
+        <img src="./Figures/iconoInstagram.png" width="60px" alt="" >
+        <img src="./Figures/iconoMarketplace.png" width="50px" alt="">
+
+     </div>
+
+     
+
+<div id="contenedorDelBanner" style="width: 100%; grid-column: 2; grid-row: 1; display: flex; flex-direction: column; gap: 20px;">
+    <img src="./Figures/banner.png" alt="">
+    
+    <div id="carrusel">
+        <h2 style="padding-bottom: 10px;">Consultar:</h2>
+
+        <a href="https://terraria.wiki.gg/es/wiki/Bestiario">
+            <img src="./Figures/logoBestiario.png" alt="">
+        </a>
+          <a href="https://terraria.wiki.gg/es/wiki/Herramientas">
+            <img src="./Figures/logoClases.png" alt="">
+        </a>
+          <a href="https://terraria.wiki.gg/es/wiki/Eventos">
+           <img src="./Figures/logoEventos.png" alt="">
+        </a>
+          <a href="https://terraria.wiki.gg/es/wiki/Jefes">
+           <img src="./Figures/logoJefes.png" alt="">
+        </a>
+
+
+
+
+        <!--Carrusel de imagenes-->
+    </div>
+</div>
+        
+
+
+
+    <article id="contenedorDeLos3Juegos" style=" padding-left: 25px; grid-column: 3; grid-row: 1; display: flex; flex-direction: column; gap: 20px; padding-left: 0;">
+
+        <div id="juegosSuperiores">
+
+
+            <div class="juegos" >
+            <img src="./Figures/logoMinecraft.jpg" width="100px"   alt="">
+               <p style="color: white;">Minecraft <strong style="color: rgb(146, 143, 143);">java y bedrock pa. <br>Compra uno y te llevas dos</strong></p>
+        </div>
+        <div class="juegos">
+            <img src="./Figures/logoRoblox.jpg" width="100px"  alt="">
+            <p style="color: white;">Roblox</p>
+        </div>
+        <div class="juegos">
+            <img src="./Figures/logoProjectZomboid.png" width="100px"   alt="">
+            <p style="color: white;">Project Zomboid <strong style="color: rgb(146, 143, 143);">Es muy dificil xD</strong></p>
+        </div>
+
+
+        </div>
+        
+
+
+
+         <div id="circuloDeHorasJugadas" style="background-color: rgba(14, 13, 13, 0.5); border-radius: 10px; padding: 10px; position: relative; display: flex; flex-direction: column; gap: 15px; min-height: 250px;">
+        <h2 style="margin-bottom: 9px; font-size: 20px;">Estadisticas</h2>
+            <div id="circulo" style=" margin-left: 26%; width: 120px; height: 120px; border-radius: 50%; background-color: rgba(20, 20, 20, 0.9); box-shadow: 0 0 30px 10px #00FF00; position: relative; display: flex; justify-content: center; align-items: center; animation: pulse-shadow 2s infinite alternate ease-in-out;"> <span style="color: white; font-size: 1em; text-align: center;">120 horas</span>
+            </div>
+        <!--EL CIRCULO-->
+        <div id="las3Imagenes" style="background-color: rgba(0,0,0,0); display: flex; justify-content: space-around; width: 100%; margin-top: 15px;">
+
+            <div class="imagenesconLogos " style="width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; transition: all 0.2s ease-out;
+            cursor: pointer;" >
+                <img class="logotiposDiv" src="./Figures/zenithConDiv.png" alt="" style="image-rendering: pixelated; ">
+                
+            </div>
+             <div class="imagenesconLogos" style="background-color: rgba(0,0,0,0);">
+                <img  class="logotiposDiv"  src="./Figures/amuletoConDiv.png" alt="" style="image-rendering: pixelated;">
+                
+            </div>
+             <div class="imagenesconLogos" style="background-color: rgba(0,0,0,0);">
+            
+            <img  class="logotiposDiv"  src="./Figures/lunaticoConDiv.png" alt="" style="image-rendering: pixelated;">
+             
+            </div>
+        </div>
+         </div>
+         
+     
+
+
+    </article>
+    <a href="https://terraria-game.com/en/programmy/skachat-terrariyu-1-4-4-9-na-android/">
+        <img id="downloadBanner" src="./Figures/download.png" alt="" style="margin-left: 120px; width: 650px; border-radius: 20px;" >
+    </a>
+
+    
+
+     <div id="menuSDelLadoderecho" style="grid-column: 4; grid-row: 1; display: flex; flex-direction: column; gap: 20px; padding: 0;">
+
+<div id="primermenuDerecho" style="height: 100%; background-color: rgba(14, 13, 13, 0.5); border-radius: 15px; padding: 18px; grid-column: 1; grid-row: 1; display: flex; align-items: center; flex-direction: column; gap: 20px">
+
+<img src="./Figures/IconoComunidad.png" alt="" width="60px">
+<img src="./Figures/ElJhonny.png" alt="" width="60px">
+<img src="./Figures/ElSonic.png" alt="" width="60px">
+<img src="./Figures/escudoChtulu.gif" alt="" width="60px">
+<img src="./Figures/neko_chikita.png" alt="" width="60px">
+<img src="./Figures/lunatico.png" alt="" width="60px">
+<img src="./Figures/ThomasLogo.png" alt="" width="60px">
+<img src="./Figures/Hector.png" alt="" width="60px">
+
+</div>
+<div id="segundomenuDerecho" style="height: 100%; background-color: rgba(14, 13, 13, 0.5); border-radius: 15px; padding: 18px; grid-column: 1; grid-row: 1; display: flex; align-items: center; flex-direction: column; gap: 20px">
+        <img src="./Figures/destructor.png" alt="" width="150px">
+        <img src="./Figures/cyberOjito.webp" alt="" width="60px">
+        <img src="./Figures/" alt="" width="60px">
+    </div>
+     </div>
+
+     </main>
+
+    </div>
+    
+
+     
+    <script src="script.js"></script>
+</body>
+</html>

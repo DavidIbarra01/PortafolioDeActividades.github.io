@@ -1,0 +1,64 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    font-family:monospace;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 56px;
+}
+
+
+body{
+    background-color: black;
+    background-image: url("./Figures/backgroundLeft4Dead.jpg");
+}
+
+section{
+   padding-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 26px;
+    background-color: black;
+}
+
+img{
+    width: 150px;
+    height: 150px;
+    
+}
+
+#Contenedor_BotonesDe{
+    color: black;
+    text-align: center;
+    padding-top: 10vh ;
+}
+
+#Contenedor_BotonesDe>button{
+padding: 10px;
+font-size: 24px;
+border: 2px solid black;
+
+}
+
+#btnIniciarJuego{
+    background-color: chartreuse;
+}
+
+#btnIniciarJuego:hover{
+    background-color: rgba(128, 255, 0, 0.75);
+}
+
+#btnReiniciarJuego{
+    background-color: rgb(255, 157, 0);
+}
+
+#btnReiniciarJuego:hover{
+    background-color: rgba(255, 157, 0, 0.788);
+}
+
