@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafetería 3000</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .main-content {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu-section {
+            flex: 1;
+        }
+
+        .categoria-selector {
+            margin-bottom: 20px;
+        }
+
+        .btn-categoria {
+            padding: 10px 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+        }
+
+        .btn-categoria.active {
+            background-color: #333;
+            color: white;
+        }
+
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .producto-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+        }
+
+        .producto-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .producto-card p {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .producto-precio {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: green;
+            margin-bottom: 10px;
+        }
+
+        .btn-agregar {
+            width: 100%;
+            padding: 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .carrito-section {
+            width: 300px;
+            border-left: 1px solid #ddd;
+            padding-left: 20px;
+        }
+
+        .carrito-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .carrito-badge {
+            background: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+
+        .carrito-items {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .carrito-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .carrito-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .btn-eliminar {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .cantidad-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-cantidad {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .carrito-total {
+            background: #333;
+            color: white;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .carrito-total h3 {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-realizar-pedido {
+            width: 100%;
+            padding: 15px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .btn-realizar-pedido:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .mensaje-exito {
+            background: green;
+            color: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .carrito-vacio {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .carrito-section {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid #ddd;
+                padding-left: 0;
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cafetería PRUEBA</h1>
+            <p>Pedidos en Línea. </p>
+        </header>
+
+        <div class="main-content">
+            <div class="menu-section">
+                <div class="categoria-selector" id="categorias">
+                    <button class="btn-categoria active" onclick="cargarProductos('todos')">Todos</button>
+                    <button class="btn-categoria" onclick="cargarProductos('cafe')">Cafés</button>
+                    <button class="btn-categoria" onclick="cargarProductos('bebidas')">Bebidas</button>
+                    <button class="btn-categoria" onclick="cargarProductos('postres')">Postres</button>
+                    <button class="btn-categoria" onclick="cargarProductos('snacks')">Snacks</button>
+                </div>
+
+                <div class="productos-grid" id="productosContainer">
+                    <div class="loading">Cargando productos...</div>
+                </div>
+            </div>
+
+            <div class="carrito-section">
+                <div class="carrito-header">
+                    <h2>Mi Carrito</h2>
+                    <div class="carrito-badge" id="carritoCount">0</div>
+                </div>
+
+                <div id="mensajeExito"></div>
+
+                <div class="carrito-items" id="carritoItems">
+                    <div class="carrito-vacio">
+                        <p>Tu carrito está vacío</p>
+                    </div>
+                </div>
+
+                <div class="carrito-total" id="carritoTotal" style="display: none;">
+                    <h3>
+                        <span>Total:</span>
+                        <span id="totalPrecio">$0.00</span>
+                    </h3>
+                </div>
+
+                <button class="btn-realizar-pedido" id="btnRealizarPedido" onclick="realizarPedido()" disabled>
+                    Realizar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // BASE DE DATOS
+        const productosDB = {
+            cafe: [
+                { id: 1, nombre: "Espresso", descripcion: "Café concentrado", precio: 35, categoria: "cafe" },
+                { id: 2, nombre: "Cappuccino", descripcion: "Espresso con leche", precio: 45, categoria: "cafe" },
+                { id: 3, nombre: "Latte", descripcion: "Café con leche", precio: 50, categoria: "cafe" },
+                { id: 4, nombre: "Americano", descripcion: "Espresso con agua", precio: 40, categoria: "cafe" }
+            ],
+            bebidas: [
+                { id: 5, nombre: "Frappé", descripcion: "Bebida helada", precio: 60, categoria: "bebidas" },
+                { id: 6, nombre: "Té Chai", descripcion: "Té especiado", precio: 45, categoria: "bebidas" },
+                { id: 7, nombre: "Chocolate", descripcion: "Chocolate caliente", precio: 50, categoria: "bebidas" }
+            ],
+            postres: [
+                { id: 8, nombre: "Cheesecake", descripcion: "Pastel de queso", precio: 65, categoria: "postres" },
+                { id: 9, nombre: "Brownie", descripcion: "Brownie de chocolate", precio: 45, categoria: "postres" },
+                { id: 10, nombre: "Muffin", descripcion: "Muffin de arándanos", precio: 35, categoria: "postres" }
+            ],
+            snacks: [
+                { id: 11, nombre: "Croissant", descripcion: "Croissant francés", precio: 40, categoria: "snacks" },
+                { id: 12, nombre: "Bagel", descripcion: "Bagel con queso", precio: 45, categoria: "snacks" }
+            ]
+        };
+
+        let carrito = [];
+
+        // Inicializar
+        window.onload = function() {
+            cargarProductos('todos');
+        };
+
+        // Cargar productos
+        function cargarProductos(categoria) {
+            const container = document.getElementById('productosContainer');
+            container.innerHTML = '<div class="loading">Cargando productos...</div>';
+
+            // Actualizar botones
+            document.querySelectorAll('.btn-categoria').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // PETICIONES AAJX
+            setTimeout(() => {
+                let productos = [];
+                
+                if (categoria === 'todos') {
+                    productos = Object.values(productosDB).flat();
+                } else {
+                    productos = productosDB[categoria] || [];
+                }
+
+                mostrarProductos(productos);
+            }, 500);
+        }
+
+        // Mostrar productos
+        function mostrarProductos(productos) {
+            const container = document.getElementById('productosContainer');
+            container.innerHTML = '';
+
+            productos.forEach(producto => {
+                const card = document.createElement('div');
+                card.className = 'producto-card';
+                card.innerHTML = `
+                    <h3>${producto.nombre}</h3>
+                    <p>${producto.descripcion}</p>
+                    <div class="producto-precio">$${producto.precio.toFixed(2)}</div>
+                    <button class="btn-agregar" onclick="agregarAlCarrito(${producto.id})">
+                        Agregar
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Agregar al carrito
+        function agregarAlCarrito(productId) {
+            setTimeout(() => {
+                let producto = null;
+                for (let categoria in productosDB) {
+                    const encontrado = productosDB[categoria].find(p => p.id === productId);
+                    if (encontrado) {
+                        producto = encontrado;
+                        break;
+                    }
+                }
+
+                if (!producto) return;
+
+                const itemExistente = carrito.find(item => item.id === productId);
+                
+                if (itemExistente) {
+                    itemExistente.cantidad++;
+                } else {
+                    carrito.push({ ...producto, cantidad: 1 });
+                }
+
+                actualizarCarrito();
+            }, 200);
+        }
+
+        // Actualizar carrito
+        function actualizarCarrito() {
+            const carritoItems = document.getElementById('carritoItems');
+            const carritoCount = document.getElementById('carritoCount');
+            const carritoTotal = document.getElementById('carritoTotal');
+            const totalPrecio = document.getElementById('totalPrecio');
+            const btnRealizarPedido = document.getElementById('btnRealizarPedido');
+
+            if (carrito.length === 0) {
+                carritoItems.innerHTML = '<div class="carrito-vacio"><p>Tu carrito está vacío</p></div>';
+                carritoTotal.style.display = 'none';
+                btnRealizarPedido.disabled = true;
+                carritoCount.textContent = '0';
+                return;
+            }
+
+            const cantidadTotal = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            const precioTotal = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+
+            carritoCount.textContent = cantidadTotal;
+            totalPrecio.textContent = `$${precioTotal.toFixed(2)}`;
+            carritoTotal.style.display = 'block';
+            btnRealizarPedido.disabled = false;
+
+            carritoItems.innerHTML = '';
+            carrito.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'carrito-item';
+                itemDiv.innerHTML = `
+                    <div class="carrito-item-header">
+                        <h4>${item.nombre}</h4>
+                        <button class="btn-eliminar" onclick="eliminarDelCarrito(${item.id})">X</button>
+                    </div>
+                    <div class="cantidad-control">
+                        <button class="btn-cantidad" onclick="cambiarCantidad(${item.id}, -1)">-</button>
+                        <span>${item.cantidad}</span>
+                        <button class="btn-cantidad" onclick="cambiarCantidad(${item.id}, 1)">+</button>
+                        <span style="margin-left: auto;">$${(item.precio * item.cantidad).toFixed(2)}</span>
+                    </div>
+                `;
+                carritoItems.appendChild(itemDiv);
+            });
+        }
+
+        // Cambiar cantidad
+        function cambiarCantidad(productId, cambio) {
+            const item = carrito.find(i => i.id === productId);
+            if (item) {
+                item.cantidad += cambio;
+                if (item.cantidad <= 0) {
+                    eliminarDelCarrito(productId);
+                } else {
+                    actualizarCarrito();
+                }
+            }
+        }
+
+        // Eliminar del carrito
+        function eliminarDelCarrito(productId) {
+            carrito = carrito.filter(item => item.id !== productId);
+            actualizarCarrito();
+        }
+
+        // Realizar pedido
+        function realizarPedido() {
+            if (carrito.length === 0) return;
+
+            const btnRealizarPedido = document.getElementById('btnRealizarPedido');
+            btnRealizarPedido.disabled = true;
+            btnRealizarPedido.textContent = 'Procesando...';
+
+            // Simular petición AJAX
+            setTimeout(() => {
+                const mensajeExito = document.getElementById('mensajeExito');
+                const numeroOrden = Math.floor(Math.random() * 10000);
+                
+                mensajeExito.innerHTML = `
+                    <div class="mensaje-exito">
+                        Pedido #${numeroOrden} realizado con éxito
+                    </div>
+                `;
+
+                carrito = [];
+                actualizarCarrito();
+                btnRealizarPedido.textContent = 'Realizar Pedido';
+
+                setTimeout(() => {
+                    mensajeExito.innerHTML = '';
+                }, 3000);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

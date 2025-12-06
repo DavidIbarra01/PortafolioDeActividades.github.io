@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List (AMEN)</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+        form { background: #f9f9f9; padding: 15px; border: 1px solid #ddd; }
+        .tarea-item { border-bottom: 1px solid #eee; padding: 10px 0; display: flex; justify-content: space-between; align-items: center; }
+        .vencida { color: red; }
+        .completada { color: green; }
+        button { cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1>ToDo List</h1>
+
+    <form id="formTarea">
+        <label>Tarea: </label>
+        <input type="text" id="inputTarea" required>
+        <br><br>
+        <label>Tiempo límite (minutos): </label>
+        <input type="number" id="inputMinutos" required min="1">
+        <br><br>
+        <button type="submit">Agregar tarea</button>
+    </form>
+
+    <hr>
+
+    <h2>Pendientes</h2>
+    <div id="listaPendientes">No hay tareas pendientes.</div>
+
+    <hr>
+
+    <h2>Completadas</h2>
+    <div id="listaCompletadas">No hay tareas completadas.</div>
+
+    <hr>
+
+    <h2>No completadas (vencidas)</h2>
+    <div id="listaVencidas">No hay tareas vencidas.</div>
+
+    <script>
+        
+        // Claves para LocalStorage
+        const KEY_PENDIENTES = 'mis_tareas_pendientes';
+        const KEY_COMPLETADAS = 'mis_tareas_completadas';
+        const KEY_VENCIDAS = 'mis_tareas_vencidas';
+
+        // Función para cargar datos
+        function cargarDatos(key) {
+            return JSON.parse(localStorage.getItem(key)) || [];
+        }
+
+        // Función para guardar datos
+        function guardarDatos(key, datos) {
+            localStorage.setItem(key, JSON.stringify(datos));
+        }
+
+
+        function formatearFecha(fechaISO) {
+           
+            const d = new Date(fechaISO);
+            return d.getFullYear() + "-" + 
+                   String(d.getMonth()+1).padStart(2, '0') + "-" + 
+                   String(d.getDate()).padStart(2, '0') + " " + 
+                   String(d.getHours()).padStart(2, '0') + ":" + 
+                   String(d.getMinutes()).padStart(2, '0') + ":" + 
+                   String(d.getSeconds()).padStart(2, '0');
+        }
+
+        // Equivalente a guardar.php
+        document.getElementById('formTarea').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const tareaTexto = document.getElementById('inputTarea').value.trim();
+            const minutos = parseInt(document.getElementById('inputMinutos').value);
+
+            if (tareaTexto && minutos > 0) {
+                const ahora = new Date();
+                // Calcular límite sumando minutos
+                const limite = new Date(ahora.getTime() + minutos * 60000); 
+
+                const nuevaTarea = {
+                    id: Date.now(),//ID PERSONAL
+                    tarea: tareaTexto,
+                    limite: limite.toISOString()
+                };
+
+                const pendientes = cargarDatos(KEY_PENDIENTES);
+                pendientes.push(nuevaTarea);
+                guardarDatos(KEY_PENDIENTES, pendientes);
+
+                // Limpiar form y recargar
+                document.getElementById('inputTarea').value = '';
+                document.getElementById('inputMinutos').value = '';
+                actualizarEstado();
+            }
+        });
+
+        // Equivalente a completar Elphp
+        function completarTarea(id) {
+            let pendientes = cargarDatos(KEY_PENDIENTES);
+            const tareaIndex = pendientes.findIndex(t => t.id === id);
+
+            if (tareaIndex > -1) {
+                const tarea = pendientes[tareaIndex];
+                
+                // Mover a completadas
+                const completadas = cargarDatos(KEY_COMPLETADAS);
+                const fechaCompletada = new Date().toISOString();
+                
+                completadas.push({
+                    tarea: tarea.tarea,
+                    fecha: fechaCompletada
+                });
+                
+                // Quitar de pendientes
+                pendientes.splice(tareaIndex, 1);
+
+                guardarDatos(KEY_PENDIENTES, pendientes);
+                guardarDatos(KEY_COMPLETADAS, completadas);
+                
+                actualizarEstado();
+            }
+        }
+
+      
+        function verificarTiempo() {
+            let pendientes = cargarDatos(KEY_PENDIENTES);
+            let vencidas = cargarDatos(KEY_VENCIDAS);
+            let pendientesActualizados = [];
+            let huboCambios = false;
+
+            const ahora = new Date();
+
+            pendientes.forEach(t => {
+                const limite = new Date(t.limite);
+                if (ahora > limite) {
+                   
+                    vencidas.push({
+                        tarea: t.tarea,
+                        limite: t.limite
+                    });
+                    huboCambios = true;
+                } else {
+                    pendientesActualizados.push(t);
+                }
+            });
+
+            if (huboCambios) {
+                guardarDatos(KEY_PENDIENTES, pendientesActualizados);
+                guardarDatos(KEY_VENCIDAS, vencidas);
+            }
+        }
+
+        // Función de Renderizado 
+        function renderizar() {
+            const divPendientes = document.getElementById('listaPendientes');
+            const divCompletadas = document.getElementById('listaCompletadas');
+            const divVencidas = document.getElementById('listaVencidas');
+
+            const pendientes = cargarDatos(KEY_PENDIENTES);
+            const completadas = cargarDatos(KEY_COMPLETADAS);
+            const vencidas = cargarDatos(KEY_VENCIDAS);
+
+            // Renderizar Pendientes
+            if (pendientes.length === 0) {
+                divPendientes.innerHTML = "No hay tareas pendientes.";
+            } else {
+                divPendientes.innerHTML = "";
+                pendientes.forEach(t => {
+                    const html = `
+                        <div class="tarea-item">
+                            <div>
+                                <b>${t.tarea}</b> 
+                                <br><small>Límite: ${formatearFecha(t.limite)}</small>
+                            </div>
+                            <button onclick="completarTarea(${t.id})">Completar</button>
+                        </div>
+                    `;
+                    divPendientes.innerHTML += html;
+                });
+            }
+
+            // Renderizar Completadas
+            if (completadas.length === 0) {
+                divCompletadas.innerHTML = "No hay tareas completadas.";
+            } else {
+                divCompletadas.innerHTML = "";
+                completadas.forEach(t => {
+                    divCompletadas.innerHTML += `<div class='completada'>Tarea: ${t.tarea} (Completada: ${formatearFecha(t.fecha)})</div>`;
+                });
+            }
+
+            // Renderizar Vencidas
+            if (vencidas.length === 0) {
+                divVencidas.innerHTML = "No hay tareas vencidas.";
+            } else {
+                divVencidas.innerHTML = "";
+                vencidas.forEach(t => {
+                    divVencidas.innerHTML += `<div class='vencida'>Tarea: ${t.tarea} (Vencida: ${formatearFecha(t.limite)})</div>`;
+                });
+            }
+        }
+
+        // Función maestra TODA PODEROSAAAA que actualiza todo
+        function actualizarEstado() {
+            verificarTiempo(); 
+            renderizar();   
+        }
+
+        // Iniciar al cargar la página
+        actualizarEstado();
+
+        setInterval(actualizarEstado, 60000); 
+
+    </script>
+</body>
+</html>
