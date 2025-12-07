@@ -4,7 +4,7 @@
 }
 
 body{
-    background-image: url("/Images/Roblocfondo.webp");
+    background-image: url("./Images/Roblocfondo.webp");
     background-color: black;
     font-family: Arial, Helvetica, sans-serif;
 }

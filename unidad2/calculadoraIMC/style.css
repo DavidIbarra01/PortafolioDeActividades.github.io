@@ -1,0 +1,68 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+
+body{
+    background: url("./img/MCWallpaper.jpg") ;
+    background-color: blueviolet;
+    color: white;
+}
+h1{
+    text-align: center;
+    background-color: black;
+    font-size: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+h2{
+    font-size: 50px;
+  background-color: black;
+   padding: 30px;
+  
+}
+
+input{
+    margin-left: 10%;
+    font-size: 30px;
+    width: 190px;
+}
+
+.inputsIMC{
+    height: 60px;
+    
+}
+
+#ContenedorPrincipal{
+    display: flex;
+    margin-left: 12%;
+   height: 600px;
+    padding-top: 90px;
+}
+
+
+#ContenedorForm{
+    background-color: black;
+    border-radius: 10px;
+    height: 700px;
+}
+
+#img_Entidad{
+  padding-top: 10px;
+ margin-left: 320px;
+   padding-left: 100px;
+
+}
+
+
+#tableIMG{
+    height: 500px;
+    width: 500px;
+    padding-left: 200px;
+    
+}
+
+
